@@ -219,7 +219,7 @@
 <body>
     <div class="container">
         <h1>ASUC ABSA Visualization (Fiscal Year 2026)</h1>
-        <p class="subtitle">413 student organizations</p>
+        <p class="subtitle">413 student organizations • Hover over circles to see details</p>
         
         <div class="main-content">
             <div class="left-panel">
@@ -229,7 +229,7 @@
             
             <div class="right-panel">
                 <div id="chart"></div>
-                <div class="instruction">Hover over circles to see details • Most senior clubs closest to center • Rotates continuously</div>
+                <div class="instruction">Smrithi Senthilnathan/The Daily Californian • Source: <a href="https://docs.google.com/spreadsheets/d/1WPbzenDMa0bnpSfRhuXlw6oCjYTTlLuUrmI1g0uIH-o/edit?gid=26299410#gid=26299410"> ASUC FY26 ABSA Allocations</a></div>
             </div>
         </div>
         
@@ -244,7 +244,7 @@
         const centerY = height / 2;
         const centerCircleRadius = 100;
         let rotationSpeed = 0.003;
-        const minDistanceFromCenter = centerCircleRadius + 50; // Gap between center and first ring
+        const minDistanceFromCenter = centerCircleRadius + 70; // Gap between center and first ring
         
         // Ring configuration
         const ringBoundaries = [40, 30, 20, 10, 1]; // Years thresholds (descending)
@@ -350,10 +350,10 @@
                         .attr("r", distance);
                     
                     // Add label
-                    ringsGroup.append("text")
+                    centerGroup.append("text")
                         .attr("class", "ring-label")
-                        .attr("x", 0)
-                        .attr("y", distance + 25)
+                        .attr("x", centerX)
+                        .attr("y", centerY + distance + 25)
                         .text(ringLabels[i]);
                 }
                 
@@ -538,6 +538,8 @@
                 item.append("span")
                     .text(cat);
             });
+
+            //legendContainer.html('<i>Categories are not part of official ABSA allocations are were defined based on reporters\' classifications</i>')
         }
         
         function createSizeLegend(minFunding, maxFunding) {
@@ -563,7 +565,7 @@
                         <strong style="color: #333;">Years of Sponsorship</strong><br>
                         Distance from center:<br>
                         • 40+ years: innermost ring<br>
-                        • <10 years: outermost ring<br<
+                        • <10 years: outermost ring<br>
                         <i>Most senior clubs closest to center</i>
                     </div>
                 </div>
